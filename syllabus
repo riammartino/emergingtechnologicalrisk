@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emerging Technological Risk — Syllabus (DRAFT//PRE-DECISIONAL)</title>
+<meta name="description" content="A hands-on, decision-focused short course for senior military leaders on emerging technological risk: AI and agentic AI, the post-quantum cryptographic transition, autonomous systems, space and spectrum, the digital foundation (cyber, cloud, chips, power, OT), and their convergence. Six units build one risk-acceptance decision.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f7f7f4; --surface:#ffffff; --surface-2:#f0efec; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --line:#e1e0d9; --line-2:#c3c2b7;
+  --accent:#2a78d6; --accent-ink:#ffffff; --accent-soft:#e3eefb;
+  --warn-bg:#fff3cd; --warn-ink:#5a4200; --warn-line:#f0c96b;
+  --draft:#8b1d1d; --draft-ink:#ffffff;
+  --good:#0ca30c; --serious:#ec835a; --critical:#d03b3b; --violet:#4a3aa7; --aqua:#1baf7a; --amber:#eda100;
+  --radius:10px; --maxw:1080px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0d0d0d; --surface:#1a1a19; --surface-2:#242422; --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --line:#2c2c2a; --line-2:#383835; --accent:#3987e5; --accent-soft:#16294a;
+    --warn-bg:#3a2e08; --warn-ink:#ffe8a3; --warn-line:#8a6d1a; --draft:#b32b2b;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0d0d0d; --surface:#1a1a19; --surface-2:#242422; --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --line:#2c2c2a; --line-2:#383835; --accent:#3987e5; --accent-soft:#16294a;
+  --warn-bg:#3a2e08; --warn-ink:#ffe8a3; --warn-line:#8a6d1a; --draft:#b32b2b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:112px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.55}
+a{color:var(--accent)}
+a:focus-visible, button:focus-visible, summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+h1,h2,h3,h4{line-height:1.2; margin:0 0 .5rem}
+h1{font-size:clamp(1.7rem,4vw,2.5rem); letter-spacing:-.01em}
+h2{font-size:1.45rem}
+h3{font-size:1.12rem}
+p{margin:.4rem 0 .9rem}
+code,kbd{font-family:var(--mono); font-size:.9em; background:var(--surface-2); padding:.1em .35em; border-radius:4px}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 16px}
+
+.banner{background:var(--draft); color:var(--draft-ink); text-align:center; font-weight:700; letter-spacing:.14em; font-size:.85rem; padding:.35rem 16px; text-transform:uppercase}
+.banner.top{position:sticky; top:0; z-index:50}
+.banner span{opacity:.85; font-weight:500; letter-spacing:.02em; text-transform:none; margin-left:.6rem}
+
+header.hero{padding:2rem 0 1.25rem; border-bottom:1px solid var(--line); background:var(--surface)}
+.kicker{color:var(--muted); font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:.75rem}
+.hero .sub{font-size:1.15rem; color:var(--ink-2); max-width:64ch; margin:.4rem 0 1rem}
+.meta{display:flex; flex-wrap:wrap; gap:.5rem .9rem; color:var(--ink-2); font-size:.92rem}
+.meta b{color:var(--ink)}
+.pill{display:inline-block; border:1px solid var(--line-2); border-radius:999px; padding:.1rem .6rem; font-size:.8rem; color:var(--ink-2); background:var(--surface-2)}
+.tools{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1rem}
+.btn{appearance:none; border:1px solid var(--line-2); background:var(--surface); color:var(--ink); border-radius:8px; padding:.45rem .8rem; font:inherit; font-size:.9rem; cursor:pointer}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
+.btn:hover{border-color:var(--accent)}
+
+nav.sub{position:sticky; top:31px; z-index:40; background:var(--surface); border-bottom:1px solid var(--line)}
+nav.sub ul{list-style:none; margin:0; padding:0; display:flex; gap:.15rem; overflow-x:auto; -webkit-overflow-scrolling:touch}
+nav.sub a{display:block; padding:.65rem .7rem; color:var(--ink-2); text-decoration:none; white-space:nowrap; font-size:.9rem; border-bottom:3px solid transparent}
+nav.sub a:hover, nav.sub a.active{color:var(--ink); border-bottom-color:var(--accent)}
+
+section{padding:2rem 0 .5rem; border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1rem 1.1rem; margin:.75rem 0}
+.grid{display:grid; gap:.9rem}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid.three{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.callout{background:var(--warn-bg); color:var(--warn-ink); border:1px solid var(--warn-line); border-radius:var(--radius); padding:.8rem 1rem; margin:.9rem 0}
+.callout a{color:inherit}
+.lede{font-size:1.05rem; max-width:72ch}
+ul.tight{margin:.3rem 0 .8rem 1.1rem; padding:0}
+ul.tight li{margin:.25rem 0}
+.num{display:inline-grid; place-items:center; width:1.7rem; height:1.7rem; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-weight:700; font-size:.85rem; margin-right:.5rem; flex:none}
+
+table{width:100%; border-collapse:collapse; font-size:.93rem; margin:.6rem 0 1rem}
+th,td{text-align:left; vertical-align:top; padding:.5rem .55rem; border-bottom:1px solid var(--line)}
+th{color:var(--ink-2); font-weight:600; font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--line-2)}
+tr:hover td{background:var(--surface-2)}
+.table-wrap{overflow-x:auto}
+
+.tabs{display:flex; gap:.35rem; border-bottom:1px solid var(--line-2); margin:.5rem 0 1rem; flex-wrap:wrap}
+.tab{appearance:none; border:none; background:none; padding:.6rem .9rem; font:inherit; font-weight:600; color:var(--ink-2); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--accent)}
+[role="tabpanel"][hidden]{display:none}
+
+details.mod{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); margin:.7rem 0; overflow:hidden}
+details.mod summary{list-style:none; cursor:pointer; padding:.9rem 1.1rem; display:flex; gap:.8rem; align-items:flex-start}
+details.mod summary::-webkit-details-marker{display:none}
+details.mod summary .t{flex:1}
+details.mod summary .t small{display:block; color:var(--ink-2); font-weight:400; margin-top:.15rem}
+details.mod summary .chev{transition:transform .2s; color:var(--muted); flex:none; margin-top:.2rem}
+details.mod[open] summary .chev{transform:rotate(90deg)}
+details.mod .body{padding:0 1.1rem 1.1rem 1.1rem; border-top:1px solid var(--line)}
+.q{font-style:italic; color:var(--ink-2); margin:.8rem 0 .6rem; padding-left:.8rem; border-left:3px solid var(--accent)}
+h4.lbl{margin:1rem 0 .3rem; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.tmi{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.7rem; margin:.4rem 0}
+.tmi .c{background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:.6rem .7rem; font-size:.9rem}
+.tmi .c b{display:block; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-bottom:.25rem}
+.sandbox{background:var(--accent-soft); border:1px solid var(--line-2); border-radius:8px; padding:.7rem .8rem; margin:.5rem 0; font-size:.92rem}
+.sandbox .h{font-weight:700; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap}
+.capstep{border-left:3px solid var(--aqua); background:var(--surface-2); padding:.5rem .8rem; border-radius:0 8px 8px 0; margin:.6rem 0; font-size:.92rem}
+.readings li{margin:.3rem 0}
+.readings li small{color:var(--muted)}
+
+.status{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.04em; padding:.05rem .45rem; border-radius:4px; border:1px solid transparent; vertical-align:middle; margin-left:.3rem}
+.s-final{background:#e3f6e3; color:#0a5c0a; border-color:#9fd89f}
+.s-draft{background:#fff1cc; color:#6b4b00; border-color:#f0c96b}
+.s-inforce{background:#e3eefb; color:#123f7a; border-color:#9ec5f4}
+.s-revision{background:#fde6dc; color:#7a2f0f; border-color:#f3b59a}
+.s-verify{background:#eee; color:#444; border-color:#ccc}
+.s-pending{background:var(--surface-2); color:var(--ink-2); border-color:var(--line-2)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .status{filter:saturate(.9) brightness(.95)} }
+:root[data-theme="dark"] .status{filter:saturate(.9) brightness(.95)}
+
+.colab{display:inline-flex; align-items:center; gap:.4rem; background:#fff; border:1px solid #d0d0d0; border-radius:6px; padding:.25rem .55rem; text-decoration:none; color:#111; font-size:.85rem; font-weight:600}
+.colab svg{width:20px; height:14px}
+.colab.disabled{opacity:.6; cursor:default}
+.mini{font-size:.85rem; color:var(--ink-2)}
+
+figure{margin:1rem 0}
+figcaption{color:var(--muted); font-size:.85rem; margin-top:.35rem}
+.arc{width:100%; height:auto; display:block; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius)}
+
+dl.gloss{display:grid; grid-template-columns:max-content 1fr; gap:.35rem 1rem; font-size:.95rem}
+dl.gloss dt{font-weight:600}
+dl.gloss dd{margin:0; color:var(--ink-2)}
+@media (max-width:600px){ dl.gloss{grid-template-columns:1fr} dl.gloss dd{margin-bottom:.5rem} }
+
+footer{padding:1.5rem 0 2.5rem; color:var(--ink-2); font-size:.9rem}
+.disclaimer{font-style:italic}
+
+@media print{
+  .banner.top{position:static}
+  nav.sub,.tools,.tab,.noprint{display:none !important}
+  [role="tabpanel"][hidden]{display:block !important}
+  details.mod{break-inside:avoid} details.mod:not([open]) .body{display:block}
+  details.mod summary .chev{display:none}
+  body{background:#fff; color:#000; font-size:12px}
+  .card,details.mod{border-color:#bbb}
+  a{color:#000; text-decoration:none}
+  a[href^="http"]::after{content:" (" attr(href) ")"; font-size:.8em; color:#555}
+  @page{margin:16mm; @top-center{content:"DRAFT//PRE-DECISIONAL"}}
+}
+</style>
+</head>
+<body>
+
+<div class="banner top" role="note" aria-label="Document status">DRAFT//PRE-DECISIONAL <span>· Not for distribution · Working draft, 29 September 2026</span></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Senior-leader short course · Hands-on · Decision-focused</div>
+    <h1>Emerging Technological Risk:<br>Deciding Under Deep Uncertainty</h1>
+    <p class="sub">Six units, one decision. A hands-on course that takes senior leaders from "how does this technology actually work?" to a defensible, joint-process risk-acceptance decision they can own — across AI and agentic AI, the post-quantum transition, autonomous systems, space and spectrum, and the digital foundation beneath all of it.</p>
+    <div class="meta">
+      <span><b>Audience:</b> senior military and civilian leaders — no engineering or coding background required</span>
+      <span><b>Shape:</b> 6 units · 6-week hybrid <i>or</i> 3-day intensive</span>
+      <span><b>Method:</b> each unit = a plain-language foundation + a ~15-min hands-on sandbox; all six build one capstone decision</span>
+      <span><b>Classification:</b> unclassified; open sources and tools only</span>
+      <span><b>Course director:</b> Ronald Iammartino, PhD, CISSP</span>
+      <span><b>Version:</b> draft 0.2 · sources verified through 29 Sep 2026</span>
+    </div>
+    <div class="tools noprint">
+      <button class="btn" id="expandAll" type="button">Expand all units</button>
+      <button class="btn" id="printBtn" type="button">Print / save as PDF</button>
+      <button class="btn" id="themeBtn" type="button" aria-pressed="false">Dark mode</button>
+    </div>
+  </div>
+</header>
+
+<nav class="sub" aria-label="Sections">
+  <div class="wrap">
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#outcomes">Outcomes</a></li>
+      <li><a href="#format">How it works</a></li>
+      <li><a href="#capstone">The capstone</a></li>
+      <li><a href="#units">Units</a></li>
+      <li><a href="#toolbelt">Toolbelt</a></li>
+      <li><a href="#assessment">Assessment</a></li>
+      <li><a href="#policies">Policies</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <h2>Overview</h2>
+  <p class="lede">Senior leaders increasingly have to accept risk from technologies that can't be fully tested, change faster than policy, and fail in unfamiliar ways. This course is built to make that decision well. It is deliberately short and hands-on: every unit gives you just enough of <em>how the technology works</em> to see <em>how it is threatened</em>, then <em>what mitigates the threat</em>, then <em>how you decide</em> — and everything you do feeds one capstone decision you brief at the end.</p>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>The through-line: threat → mitigation → decision</h3>
+      <p>Each technology is a case of the same problem, so each unit follows the same four beats:</p>
+      <ul class="tight">
+        <li><b>Foundation.</b> A plain-language explanation and a short, no-jargon demo of how the technology actually works. You cannot judge a risk you do not understand.</li>
+        <li><b>Threat.</b> How it fails and how an adversary turns it against you — shown, not just described.</li>
+        <li><b>Mitigation.</b> The controls, standards, and policy that actually reduce the risk.</li>
+        <li><b>Implementation &amp; decision.</b> What you require from a program, and what you add to your capstone decision.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>An innovation-strategy lens</h3>
+      <p>The course borrows a few durable constructs from technology-strategy scholarship (Schilling, <i>Strategic Management of Technological Innovation</i>) to explain <em>why</em> these decisions are hard — used as framing, not as a separate unit:</p>
+      <ul class="tight">
+        <li><b>S-curves</b> — where a technology sits in its maturity, and why the "when" is unknowable (Units 1, 3).</li>
+        <li><b>Competence-destroying vs. -enhancing change</b> — why post-quantum is a wholesale replacement, not a patch (Unit 3).</li>
+        <li><b>Architectural vs. modular innovation</b> — why new tech breaks large enterprise architectures on integration (Unit 5).</li>
+        <li><b>Make / buy / ally</b> — the commercial-vs-military sourcing decision (Unit 5).</li>
+        <li>Her short opening-case-per-chapter format — adopted as one digestible case per unit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure>
+    <svg class="arc" viewBox="0 0 1000 300" role="img" aria-labelledby="arcTitle arcDesc">
+      <title id="arcTitle">Course arc</title>
+      <desc id="arcDesc">Unit 1 foundations feeds four technology units — AI and agentic AI, cryptography and quantum, contested domains, and the digital foundation — which feed Unit 6 convergence and the decision. A capstone bar runs beneath all six units.</desc>
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+      <g font-family="system-ui, sans-serif" font-size="15" fill="currentColor">
+        <rect x="16" y="70" width="150" height="90" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="91" y="105" text-anchor="middle" font-weight="700">1 · Foundations</text>
+        <text x="91" y="127" text-anchor="middle" font-size="12" opacity=".75">deciding under</text>
+        <text x="91" y="143" text-anchor="middle" font-size="12" opacity=".75">deep uncertainty</text>
+        <line x1="166" y1="115" x2="200" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="205" y="20" width="560" height="190" rx="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="485" y="42" text-anchor="middle" font-size="12" opacity=".75" letter-spacing="2">TECHNOLOGY UNITS · FOUNDATION + SANDBOX EACH</text>
+        <rect x="225" y="58" width="255" height="60" rx="8" fill="none" stroke="currentColor"/><text x="352" y="84" text-anchor="middle" font-weight="600">2 · AI &amp; Agentic AI</text><text x="352" y="104" text-anchor="middle" font-size="12" opacity=".75">threats &amp; controls</text>
+        <rect x="490" y="58" width="255" height="60" rx="8" fill="none" stroke="currentColor"/><text x="617" y="84" text-anchor="middle" font-weight="600">3 · Crypto &amp; Quantum</text><text x="617" y="104" text-anchor="middle" font-size="12" opacity=".75">the PQC transition</text>
+        <rect x="225" y="128" width="255" height="60" rx="8" fill="none" stroke="currentColor"/><text x="352" y="154" text-anchor="middle" font-weight="600">4 · Contested Domains</text><text x="352" y="174" text-anchor="middle" font-size="12" opacity=".75">autonomy · space · spectrum</text>
+        <rect x="490" y="128" width="255" height="60" rx="8" fill="none" stroke="currentColor"/><text x="617" y="154" text-anchor="middle" font-weight="600">5 · Digital Foundation</text><text x="617" y="174" text-anchor="middle" font-size="12" opacity=".75">cyber · cloud · chips · power · OT</text>
+        <line x1="765" y1="115" x2="799" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="804" y="70" width="180" height="90" rx="10" fill="var(--accent)" stroke="none"/>
+        <text x="894" y="100" text-anchor="middle" font-weight="700" fill="#fff">6 · Convergence</text>
+        <text x="894" y="120" text-anchor="middle" font-weight="700" fill="#fff">&amp; the Decision</text>
+        <text x="894" y="140" text-anchor="middle" font-size="12" fill="#fff" opacity=".9">joint risk process</text>
+        <rect x="16" y="238" width="968" height="46" rx="10" fill="none" stroke="var(--aqua)" stroke-width="2"/>
+        <text x="500" y="266" text-anchor="middle" font-weight="600" fill="var(--aqua)">CAPSTONE — one Technology Risk &amp; Decision Package, built one section per unit</text>
+      </g>
+    </svg>
+    <figcaption>Foundations → four technology units, each with a hands-on sandbox → convergence and a documented decision. The capstone accretes across all six.</figcaption>
+  </figure>
+
+  <div class="callout"><b>What changed in this draft (0.2).</b> Restructured from nine modules to six units with a single build-up capstone; every unit now leads with a foundation and a short hands-on sandbox; added space &amp; spectrum, the digital foundation (cyber, cloud, data centers &amp; power, chips, OT/ICS), human factors, GenAI deception, and AI catastrophic-misuse governance; rebuilt the decision unit on joint risk methodology; refreshed the threat literature to 2024–2026, including the first reported agentic-AI cyber-espionage case.</div>
+</section>
+
+<!-- OUTCOMES -->
+<section id="outcomes">
+  <h2>Learning outcomes</h2>
+  <div class="grid two">
+    <div class="card"><span class="num">1</span><b>Frame technological uncertainty.</b> Tell measurable risk from deep uncertainty, and pick the method that fits — NIST SP 800-30 determination versus robust decision-making, adaptive pathways, and premortems.</div>
+    <div class="card"><span class="num">2</span><b>Understand each technology well enough to interrogate it.</b> Explain, in plain terms, how AI/agents, cryptography, autonomy, space/spectrum, and the digital foundation work — because you demoed each one.</div>
+    <div class="card"><span class="num">3</span><b>See the threats testing cannot reveal.</b> Evasion, poisoning, prompt injection and excessive agency; harvest-now-decrypt-later; specification gaming; PNT denial; supply-chain, cloud and OT compromise; automation bias.</div>
+    <div class="card"><span class="num">4</span><b>Apply the current standards and policy baseline.</b> NIST AI RMF and AI 100-2; FIPS 203/204/205 and the 2026 PQC deadlines; DoDD 3000.09; SP 800-82 (OT), 800-161 (supply chain), 800-145 (cloud); NSPM-11 and EO 14409/14412.</div>
+    <div class="card"><span class="num">5</span><b>Weigh commercial against military use.</b> Data rights, integration and reverse compatibility into enterprise architectures, and the hard problem of adapting commercial AI/autonomy — built for predictable, data-rich life — to data-sparse, unpredictable combat.</div>
+    <div class="card"><span class="num">6</span><b>Own a joint-process decision.</b> Produce and brief a risk-acceptance recommendation with risk-to-mission and risk-to-force, range-based likelihood, mitigations, signposts, and a named accepting authority.</div>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section id="format">
+  <h2>How it works</h2>
+  <p>Six units. Each unit is about <b>90 minutes of contact time</b> and produces one section of your capstone. There is no separate reading load beyond the short essentials and one optional media piece per unit; the sandbox and the case <em>are</em> the work.</p>
+
+  <div class="tabs" role="tablist" aria-label="Delivery format">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="fmt-hybrid" id="tab-hybrid" type="button">6-week hybrid</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="fmt-intensive" id="tab-intensive" type="button">3-day intensive</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="fmt-anatomy" id="tab-anatomy" type="button">Anatomy of a unit</button>
+  </div>
+
+  <div role="tabpanel" id="fmt-hybrid" aria-labelledby="tab-hybrid">
+    <p class="mini">One 90-minute session per week (in person or virtual) plus ~30 minutes to finish that week's capstone section. Sandboxes can be run live in pairs or beforehand.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Week</th><th>Unit</th><th>Sandbox (~15 min)</th><th>Capstone section produced</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><a href="#u1">1 · Foundations — deciding under deep uncertainty</a></td><td>Robust-decision demo</td><td>A · Frame &amp; uncertainty</td></tr>
+        <tr><td>2</td><td><a href="#u2">2 · AI &amp; agentic AI — threats and controls</a></td><td>Agentic-agent sandbox</td><td>B · AI/agent threat &amp; control</td></tr>
+        <tr><td>3</td><td><a href="#u3">3 · Cryptography &amp; quantum — the PQC transition</a></td><td>PQC + Mosca sandbox</td><td>C · Cryptographic exposure</td></tr>
+        <tr><td>4</td><td><a href="#u4">4 · Contested domains — autonomy, space &amp; spectrum</a></td><td>Autonomy control sandbox</td><td>D · Physical &amp; EM exposure</td></tr>
+        <tr><td>5</td><td><a href="#u5">5 · Digital foundation — cyber, cloud, chips, power &amp; OT</a></td><td>Supply-chain / SBOM sandbox</td><td>E · Dependency &amp; integration</td></tr>
+        <tr><td>6</td><td><a href="#u6">6 · Convergence &amp; the decision</a></td><td>Joint-risk decision sandbox</td><td>F · The decision + 10-min brief</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div role="tabpanel" id="fmt-intensive" aria-labelledby="tab-intensive" hidden>
+    <p class="mini">Three consecutive days, two units per half-day block; essentials issued a week ahead. Capstone sections are drafted in the room; the brief is on the afternoon of day 3.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Day</th><th>Morning</th><th>Afternoon</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Unit 1 · Foundations + sandbox</td><td>Unit 2 · AI &amp; agentic AI + sandbox</td></tr>
+        <tr><td>2</td><td>Unit 3 · Crypto &amp; quantum + sandbox</td><td>Unit 4 · Contested domains + sandbox</td></tr>
+        <tr><td>3</td><td>Unit 5 · Digital foundation + sandbox</td><td>Unit 6 · Decision + capstone briefs</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div role="tabpanel" id="fmt-anatomy" aria-labelledby="tab-anatomy" hidden>
+    <div class="grid three">
+      <div class="card"><h3>Foundation + demo · ~25 min</h3><p>Plain-language "how it works," anchored by a no-code demo (e.g., train a model in your browser, build a quantum circuit by dragging gates). You leave able to picture the mechanism.</p></div>
+      <div class="card"><h3>Sandbox + case · ~50 min</h3><p>A ~15-minute Colab sandbox that makes the threat and its mitigation tangible, then a short business-school-style case discussion.</p></div>
+      <div class="card"><h3>Capstone step · ~15 min</h3><p>Add this unit's section to your decision package. That is the assignment — nothing else to hand in.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPSTONE -->
+<section id="capstone">
+  <h2>The capstone — one decision, built across six units</h2>
+  <p class="lede">Instead of six disconnected assignments, you build a single <b>Technology Risk &amp; Decision Package</b> on one capability you care about — a system your organization is fielding, buying, or being asked to trust. You add one section per unit and finish with a joint-process risk-acceptance recommendation you brief in ten minutes.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Unit</th><th>Section you produce</th><th>The question it answers</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>A · Frame &amp; uncertainty</b> — the decision, the owner, what is knowable vs. deeply uncertain, S-curve placement, first signposts</td><td>What am I actually deciding, and how much can be estimated?</td></tr>
+      <tr><td>2</td><td><b>B · AI/agent threat &amp; control</b> — where AI/agents sit in the capability, its supply chain, or the adversary's hands; the controls you require</td><td>How could AI be turned against the mission, and what stops it?</td></tr>
+      <tr><td>3</td><td><b>C · Cryptographic exposure</b> — what it protects, data secrecy horizon, Mosca X+Y vs. Z, PQC migration position</td><td>What is exposed to "harvest now, decrypt later," and is it migrating?</td></tr>
+      <tr><td>4</td><td><b>D · Physical &amp; EM exposure</b> — autonomy design-domain limits; dependence on space, links, spectrum, PNT; behavior when contested</td><td>What happens when the environment is jammed, spoofed, or denied?</td></tr>
+      <tr><td>5</td><td><b>E · Dependency &amp; integration</b> — cyber, cloud, data-center/power, chips, OT; data rights and enterprise-integration reality</td><td>What does this quietly depend on, and who really controls it?</td></tr>
+      <tr><td>6</td><td><b>F · The decision</b> — convergence map; joint risk analysis; residual risk; recommendation to the named authority; signposts</td><td>Do I accept the risk — and can I defend it in writing?</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card">
+    <h3>The end state — a joint-process risk-acceptance recommendation</h3>
+    <p>Section F is written the way the joint force actually decides on risk, not as a loose memo:</p>
+    <ul class="tight">
+      <li><b>Joint Risk Analysis (CJCSM 3105.01):</b> state <b>risk to mission</b> and <b>risk to force</b> separately, each rated probability × consequence, with an overall level and a recommended response.</li>
+      <li><b>Planning-process risk step (JPP/MDMP):</b> identify hazards, assess, develop controls, decide, assign who supervises.</li>
+      <li><b>Authorizing-official acceptance (DoDI 8510.01) and the RIO construct:</b> name who accepts the <b>residual</b> risk, the tolerance it sits within (NIST IR 8286), and what reopens the decision.</li>
+    </ul>
+    <p class="mini">A full section-by-section template and the grading rubric are in the capstone worksheet distributed with the course (<code>capstone.md</code>).</p>
+  </div>
+</section>
+
+<!-- UNITS -->
+<section id="units">
+  <h2>Units</h2>
+  <p class="mini">Each unit carries a foundation + demo, a hands-on sandbox, the threat → mitigation → implementation beats, one case, essentials + one optional media piece, and the capstone section it feeds. Reading load is light by design (~30–45 pages/unit). Status tags: <span class="status s-final">FINAL</span> <span class="status s-inforce">IN FORCE</span> <span class="status s-draft">DRAFT</span> <span class="status s-revision">UNDER REVISION</span>.</p>
+
+  <!-- U1 -->
+  <details class="mod" id="u1">
+    <summary><span class="num">1</span><span class="t">Foundations — Deciding Under Deep Uncertainty<small>Why risk tools break for emerging tech · robust decision-making · S-curves · the premortem</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">When you cannot estimate likelihood, what are you actually deciding?</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>How the risk "machinery" you already use is built — likelihood × impact, the RMF, the risk register — and the hidden assumption that likelihood is knowable. Knight's risk-vs-uncertainty distinction; robust decision-making (choose the option that fails least badly across many futures); the S-curve as a way to place a technology's maturity. <b>Demo:</b> a risk-matrix ranking that flips when one uncertain input changes.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>The real hazard is deciding confidently on a number that is a guess with a label; over- and under-reaction both have costs.</div>
+        <div class="c"><b>Mitigation</b>Elicit ranges, not points; robust strategies; adaptive pathways with signposts; premortems before signing.</div>
+        <div class="c"><b>Implementation</b>Write likelihood as a range with its evidence basis; set a review date and the signals that would reopen the decision.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Move one uncertain input and watch the "best" option change; run a small robust-decision screen across many futures and read the regret. <span class="mini">Colab · no code to write.</span></div>
+      <div class="capstep"><b>Capstone A — Frame &amp; uncertainty:</b> name your capability and the decision, classify what is knowable vs. deeply uncertain, place it on the S-curve, list first signposts.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p>A technology-adoption decision under deep uncertainty — the post-quantum transition as a competence-destroying shift leaders must act on before the threat is provable.</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>NIST SP 800-30 Rev. 1, ch. 2–3 <a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span></li>
+        <li>NIST IR 8286, §§2–3 (risk appetite &amp; tolerance) <a href="https://csrc.nist.gov/pubs/ir/8286/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span></li>
+        <li>Lempert, Popper &amp; Bankes, <i>Shaping the Next One Hundred Years</i> (RAND, 2003), ch. 1–2 <a href="https://www.rand.org/pubs/monograph_reports/MR1626.html">free PDF</a></li>
+        <li>Klein, "Performing a Project Premortem," <i>HBR</i> (2007) <a href="https://hbr.org/2007/09/performing-a-project-premortem">hbr.org</a></li>
+        <li>Schilling, <i>Strategic Management of Technological Innovation</i> — S-curves &amp; technology maturity (framing)</li>
+        <li class="mini">Optional media: a short robust-decision-making explainer (instructor selects &amp; click-tests).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- U2 -->
+  <details class="mod" id="u2">
+    <summary><span class="num">2</span><span class="t">AI &amp; Agentic AI — Threats and Controls<small>How models and agents work · evasion, poisoning, injection, excessive agency · human factors · catastrophic-misuse governance</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">An agent's risk is set by what it can touch, not by how smart it is. What can yours touch?</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>What machine learning is (it learns patterns from data; every accuracy number is conditional on the test data) and what an <em>agent</em> is (a model wired to tools and given authority to act). <b>Demo:</b> train a classifier in the browser with your own examples (Google Teachable Machine) to see how data — and biased or poisoned data — shapes behavior, with no code.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>Evasion (adversarial inputs), poisoning/backdoors in training data, prompt injection, <em>excessive agency</em>; GenAI deception and synthetic media; automation bias in the human; and catastrophic-misuse (CBRN/cyber "uplift") at the frontier.</div>
+        <div class="c"><b>Mitigation</b>Least privilege on tools, human approval gates, separated execution identity; red-teaming and evaluations; data provenance; calibration/out-of-distribution checks; content provenance (C2PA). Governed by the NIST AI RMF and AI 100-2, and frontier safety frameworks with capability thresholds.</div>
+        <div class="c"><b>Implementation</b>Demand a written authority statement (tools, permissions, oversight), a measured injection/eval result, and — for frontier models — evidence from misuse evaluations before fielding.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Give a small AI agent tools that change real (sandboxed) files, then watch a booby-trapped document hijack it — and watch least privilege and a human gate stop it. <span class="mini">Colab + open-weight model · plus the no-code Lakera "Gandalf" injection game.</span></div>
+      <div class="capstep"><b>Capstone B — AI/agent threat &amp; control:</b> where AI/agents sit in your capability (or its supply chain or the adversary's hands), the exposures that apply, and the controls you will require.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p><b>The first reported AI-orchestrated cyber-espionage campaign</b> (GTG-1002, disclosed Nov 2025; MITRE Campaign C0062): a state-linked actor ran ~80–90% of an intrusion campaign against ~30 targets agentically, with humans at only 4–6 decision points, by decomposing the attack into "innocent" sub-tasks and posing as a defensive-testing firm. Taught defensively: where the agent's <em>authority</em> created the risk, and which controls would have blunted it.</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>NIST AI 100-1 (AI RMF), Part 2 <a href="https://doi.org/10.6028/NIST.AI.100-1">doi</a> <span class="status s-final">FINAL</span></li>
+        <li>NIST AI 100-2 E2025, <i>Adversarial ML Taxonomy</i>, §§1–3 (incl. prompt injection) <a href="https://doi.org/10.6028/NIST.AI.100-2e2025">doi</a> <span class="status s-final">FINAL</span></li>
+        <li>OWASP <i>Top 10 for LLM Applications</i> (2025) — LLM01 injection, LLM06 excessive agency <a href="https://genai.owasp.org/llm-top-10/">genai.owasp.org</a></li>
+        <li>Anthropic, <i>Disrupting the first reported AI-orchestrated cyber espionage campaign</i> (2025) <a href="https://www.anthropic.com/news/disrupting-AI-espionage">anthropic.com</a>; MITRE ATT&amp;CK Campaign C0062 <a href="https://attack.mitre.org/campaigns/C0062/">attack.mitre.org</a></li>
+        <li>Human factors: Parasuraman &amp; Riley, "Humans and Automation: Use, Misuse, Disuse, Abuse" (1997); Lee &amp; See, "Trust in Automation" (2004)</li>
+        <li>Governance of catastrophic misuse: NSPM-11 (2026) <a href="https://www.whitehouse.gov/presidential-actions/2026/06/national-security-presidential-memorandum-nspm-11/">whitehouse.gov</a> <span class="status s-inforce">IN FORCE</span>; frontier-lab safety frameworks (Anthropic RSP; OpenAI Preparedness; DeepMind Frontier Safety)</li>
+        <li class="mini">Optional media: 3Blue1Brown, "But what is a neural network?" (≈19 min) <a href="https://www.youtube.com/watch?v=aircAruvnKk">youtube</a>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- U3 -->
+  <details class="mod" id="u3">
+    <summary><span class="num">3</span><span class="t">Cryptography &amp; Quantum — The Post-Quantum Transition<small>How public-key crypto works and why quantum breaks it · harvest-now-decrypt-later · the 2026 deadlines · migration as a program</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">The threat is a date you cannot know; the exposure started when the recording did. What is your X, Y and Z?</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>What cryptography does (integrity, confidentiality, authenticity, key agreement), why public-key math is what quantum computers threaten (Shor) while symmetric keys mostly survive (Grover), and why post-quantum is <em>competence-destroying</em> — a wholesale replacement of RSA/ECC, not a patch. <b>Demo:</b> build a tiny quantum circuit by dragging gates (IBM Quantum Composer), then generate a post-quantum key and signature — no code.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>"Harvest now, decrypt later": adversaries record encrypted traffic today to read it once a quantum computer exists. Forged signatures and certificates. Crypto is buried in everything, so exposure is broad.</div>
+        <div class="c"><b>Mitigation</b>The NIST standards (ML-KEM, ML-DSA, SLH-DSA); crypto-agility; hybrid key exchange during transition; a cryptographic bill of materials (CBOM); inventory first.</div>
+        <div class="c"><b>Implementation</b>Position your capability against the 2026 deadlines: EO 14412 / OMB M-26-15 (2030 key establishment, 2031 signatures for high-value systems) and the DoW PQC Strategy (support by 2030) / CNSA 2.0 for NSS.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Generate post-quantum keys and a signature, compare their size to today's, and run the Mosca calculator (X data-secrecy + Y migration vs. Z time-to-quantum) on your own numbers. <span class="mini">Colab + cryptography ≥48 · plus IBM Quantum Composer (no-code).</span></div>
+      <div class="capstep"><b>Capstone C — Cryptographic exposure:</b> what your capability protects, its data secrecy horizon, your Mosca result, and where you stand against the deadlines.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p>A program facing 2030/2031: sequencing a multi-year migration under a fixed deadline and an unknowable threat date — the archetypal competence-destroying transition.</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>NIST FIPS 203/204/205 — read the overviews <a href="https://csrc.nist.gov/pubs/fips/203/final">203</a> · <a href="https://csrc.nist.gov/pubs/fips/204/final">204</a> · <a href="https://csrc.nist.gov/pubs/fips/205/final">205</a> <span class="status s-final">FINAL</span></li>
+        <li>EO 14412 (22 Jun 2026) <a href="https://www.federalregister.gov/d/2026-12909">federalregister.gov</a> and OMB M-26-15 (24 Jun 2026) <a href="https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf">whitehouse.gov</a> <span class="status s-inforce">IN FORCE</span></li>
+        <li>Department of War PQC Strategy (Apr 2026, released Jun 2026) <a href="https://dodcio.defense.gov/Portals/0/Documents/Library/DoW-PQC-Strategy.pdf">dodcio.defense.gov</a> <span class="status s-inforce">IN FORCE</span>; NSA CNSA 2.0 <a href="https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF">media.defense.gov</a> <span class="status s-inforce">IN FORCE (NSS)</span></li>
+        <li>NIST IR 8547 (ipd), transition timeline <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">csrc.nist.gov</a> <span class="status s-draft">DRAFT</span>; Mosca (2018) <a href="https://doi.org/10.1109/MSP.2018.3761723">doi</a></li>
+        <li>Brief: quantum sensing &amp; PNT — NIST IR 8323 r1 (Foundational PNT Profile) <a href="https://csrc.nist.gov/pubs/ir/8323/r1/final">csrc.nist.gov</a></li>
+        <li class="mini">Optional media: IBM, "What is quantum computing?" explainer <a href="https://www.ibm.com/topics/quantum-computing">ibm.com</a>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- U4 -->
+  <details class="mod" id="u4">
+    <summary><span class="num">4</span><span class="t">Contested Domains — Autonomy, Space &amp; Spectrum<small>Operating-design-domain limits · human judgment · LEO, on-orbit links, 5G, contested spectrum · PNT denial</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">"A human will be in the loop." Is that physically possible for this system — and does it still work when the environment fights back?</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>How an autonomous system works (sense → decide → act, inside a defined operating-design-domain, at a physical time constant) and how the space/electromagnetic layer works (satellites in low-Earth orbit, inter-satellite/on-orbit links, ground segments, spectrum as a scarce contested resource, 5G, and position/navigation/timing). <b>Demo:</b> a control loop that holds inside its design domain and fails outside it; a look at how crowded LEO and the spectrum chart really are.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>Autonomy failing with physical consequence; specification gaming; adapting commercial autonomy (trained on predictable civilian data) to unpredictable combat; LEO congestion and ASAT; jamming and spoofing of links and GPS; permissive vs. non-permissive/denied spectrum.</div>
+        <div class="c"><b>Mitigation</b>A declared design domain and edge behavior; realistic human-on-the-loop time budgets; DoDD 3000.09 review; resilient/alternative PNT; proliferated-LEO and multi-orbit resilience; electromagnetic spectrum operations and management.</div>
+        <div class="c"><b>Implementation</b>Require the design domain in writing and a defined action at its edge; test in degraded/denied conditions, not just nominal ones.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Run a stabilizing controller, then change the physics it never trained on and add sensor latency until control collapses — and compare the collapse point to human reaction time. <span class="mini">Colab + Gymnasium · plus a live LEO/orbit viewer and the U.S. spectrum-allocation chart.</span></div>
+      <div class="capstep"><b>Capstone D — Physical &amp; EM exposure:</b> your capability's design-domain limits and its dependence on space, links, spectrum, and PNT — and how it behaves when those are contested.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p>Fielding a commercial-derived autonomous or space capability into a non-permissive environment: what breaks when the data thins out and the spectrum is denied.</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>DoDD 3000.09, <i>Autonomy in Weapon Systems</i> (2023) <a href="https://www.esd.whs.mil/portals/54/documents/dd/issuances/dodd/300009p.pdf">esd.whs.mil</a> <span class="status s-revision">UNDER REVISION</span> (update directed by NSPM-11)</li>
+        <li>DeepMind, "Specification gaming" (2020) <a href="https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/">deepmind.google</a>; SAE J3016 (defines operating-design-domain)</li>
+        <li>Space Policy Directive-5, <i>Cybersecurity Principles for Space Systems</i> (2020) <a href="https://www.federalregister.gov/documents/2020/09/10/2020-20150/cybersecurity-principles-for-space-systems">federalregister.gov</a>; NIST IR 8270 (commercial satellite ops) <a href="https://csrc.nist.gov/pubs/ir/8270/final">csrc.nist.gov</a></li>
+        <li>NIST IR 8323 r1, Foundational PNT Profile <a href="https://csrc.nist.gov/pubs/ir/8323/r1/final">csrc.nist.gov</a></li>
+        <li>Scharre, <i>Army of None</i> (2018), ch. 1–3 — human in / on / out of the loop</li>
+        <li class="mini">Optional media: a short LEO-congestion / on-orbit-communications explainer (instructor selects &amp; click-tests).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- U5 -->
+  <details class="mod" id="u5">
+    <summary><span class="num">5</span><span class="t">The Digital Foundation — Cyber, Cloud, Chips, Power &amp; OT<small>The physical stack under the software · supply chain · cloud vs. data centers · chiponomics · OT/ICS · commercial-vs-military integration</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">Every capability in this course rests on chips, power, and someone else's cloud. What does yours quietly depend on, and who controls it?</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>How the digital stack rests on physical things: <b>chips</b> (where they are made, "chiponomics," export controls), <b>data centers</b> (power, cooling, physical and geographic concentration), <b>cloud</b> (the shared-responsibility model, multi-tenancy, concentration and lock-in — a distinct risk from the data centers underneath), and <b>operational technology</b> (the PLCs and industrial control systems that move physical things). <b>Demo:</b> generate a software bill of materials for a live system and audit it against the public vulnerability database.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>Software/hardware supply-chain compromise; cloud misconfiguration and shared-responsibility gaps; provider/geographic concentration; chip supply concentration and export-control shocks; data-center power and foreign dependency; OT/ICS attacks with physical effect (Stuxnet, Ukraine grid, Colonial Pipeline, Triton).</div>
+        <div class="c"><b>Mitigation</b>C-SCRM (SP 800-161), SBOM/CBOM on a risk basis (OMB M-26-05), zero trust, cloud impact levels and the Cloud SRG, OT segmentation and monitoring (SP 800-82). Integration seen as <em>architectural</em> innovation (Schilling); a deliberate make/buy/ally choice.</div>
+        <div class="c"><b>Implementation</b>Commercial-vs-military reality: tech <b>data rights</b>, <b>reverse compatibility</b> into legacy enterprise architectures, and adapting commercial AI/autonomy — built for data-rich, predictable life — to data-sparse, unpredictable combat.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Produce a software bill of materials for a running system, audit it live for known vulnerabilities, tally the licenses, and map a data type to the cloud impact level that decides where it may run. <span class="mini">Colab + pip-audit · plus the CISA Known-Exploited-Vulnerabilities catalog and MITRE ATT&amp;CK for ICS.</span></div>
+      <div class="capstep"><b>Capstone E — Dependency &amp; integration:</b> your capability's cyber, cloud, data-center/power, chip, and OT dependencies, plus the data-rights and integration reality of getting it into the enterprise.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p>A commercial-technology integration decision — data rights and reverse compatibility — framed with make/buy/ally and architectural vs. modular innovation. Pair with a chip-supply shock (Chris Miller, <i>Chip War</i>) and a cloud-concentration lesson (the 2024 CrowdStrike outage).</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>NIST SP 800-161 Rev. 1 (C-SCRM), ch. 1–2 <a href="https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span></li>
+        <li>NIST SP 800-145 (definition of cloud) <a href="https://csrc.nist.gov/pubs/sp/800/145/final">csrc.nist.gov</a> and SP 800-144 (public-cloud security) <a href="https://csrc.nist.gov/pubs/sp/800/144/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span></li>
+        <li>NIST SP 800-82 Rev. 3 (OT security), exec summary <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span></li>
+        <li>OMB M-26-05 (risk-based software/hardware security; SBOM/attestation now optional) <a href="https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf">whitehouse.gov</a> <span class="status s-inforce">IN FORCE</span>; DoD Cloud SRG (impact levels) <a href="https://public.cyber.mil/dccs/">public.cyber.mil</a></li>
+        <li>Miller, <i>Chip War</i> (2022), intro &amp; conclusion; Schilling — architectural innovation &amp; make/buy/ally (framing)</li>
+        <li class="mini">Optional media: a short data-center-power / chip-supply explainer (instructor selects &amp; click-tests).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- U6 -->
+  <details class="mod" id="u6">
+    <summary><span class="num">6</span><span class="t">Convergence &amp; The Decision<small>Where risks compound · joint risk analysis · risk-to-mission vs. risk-to-force · the documented, owned decision</small></span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="q">At the intersection of any two of these technologies, who is accountable? If the answer is "several offices," it is nobody.</p>
+      <h4 class="lbl">Foundation + demo</h4>
+      <p>How risks compound where technologies meet (an agent holding credentials, controlling an autonomous system, on commercial data, whose signatures quantum will break), and how the joint force actually decides on risk — <b>Joint Risk Analysis (CJCSM 3105.01)</b>, risk-to-mission vs. risk-to-force, probability × consequence, the planning-process risk step, and authorizing-official acceptance of residual risk. <b>Demo:</b> a convergence map that shows which node is most coupled — and least owned.</p>
+      <h4 class="lbl">Threat → mitigation → implementation</h4>
+      <div class="tmi">
+        <div class="c"><b>Threat</b>The largest strategic risks sit at the seams, where no single program office is accountable and no single test covers the interaction.</div>
+        <div class="c"><b>Mitigation</b>Name an owner for each heavy edge; choose a robust risk-reduction posture across futures; write the decision down with signposts and a review date.</div>
+        <div class="c"><b>Implementation</b>Produce a joint-process risk-acceptance recommendation the accepting authority can sign.</div>
+      </div>
+      <div class="sandbox"><div class="h">Sandbox · ~15 min <span class="status s-pending">notebook in the hands-on build</span></div>
+        Weight the convergence edges for your capability, then generate a risk-acceptance memorandum from a joint-risk-matrix worksheet (risk-to-mission and risk-to-force, mitigations, residual risk, signposts). <span class="mini">Colab · exports a Word/Markdown memo.</span></div>
+      <div class="capstep"><b>Capstone F — The decision:</b> the convergence map, the joint risk analysis, the residual-risk recommendation to your named authority, and the signposts — briefed in ten minutes.</div>
+      <h4 class="lbl">Case (Schilling-style)</h4>
+      <p>Capstone brief-out: each participant defends a real (abstracted) convergence decision; the seminar red-teams the hidden assumption and the unmonitored signpost.</p>
+      <h4 class="lbl">Essentials + media</h4>
+      <ul class="tight readings">
+        <li>CJCSM 3105.01, <i>Joint Risk Analysis Methodology</i> — risk to mission vs. risk to force <span class="status s-verify">verify current edition</span></li>
+        <li>NIST IR 8286 (risk appetite/tolerance; register) <a href="https://csrc.nist.gov/pubs/ir/8286/final">csrc.nist.gov</a> <span class="status s-final">FINAL</span>; DoDI 8510.01 (AO risk acceptance) <a href="https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/851001p.pdf">esd.whs.mil</a></li>
+        <li>DoD <i>Risk, Issue, and Opportunity (RIO) Management Guide</i> <a href="https://www.dau.edu">dau.edu</a> <span class="status s-verify">verify edition</span></li>
+        <li>Marchau et al., <i>Decision Making under Deep Uncertainty</i> (2019), ch. 4 (adaptive pathways) <a href="https://link.springer.com/book/10.1007/978-3-030-05252-2">open access</a></li>
+        <li>USD(R&amp;E) Critical Technology Areas (2025) <a href="https://www.cto.mil">cto.mil</a>; 2026 National Defense Strategy — convergence framing</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- TOOLBELT -->
+<section id="toolbelt">
+  <h2>Toolbelt — the hands-on tools</h2>
+  <p class="lede">The course keeps hands-on time low by giving each unit one short, pre-built sandbox plus one or two <em>no-code</em> authoritative tools that make the foundation tangible. The six sandbox notebooks are being built now; the external tools below are live and free today.</p>
+
+  <div class="callout"><b>Handling rule for every hands-on activity.</b> The sandboxes run in Google Colab — a commercial public cloud with no government authorization. Treat everything you enter as public: no CUI, no PII, no work data. Every dataset in the course is open and bundled.</div>
+
+  <div class="grid two" id="sandboxGrid"></div>
+  <noscript><p class="mini">Sandbox notebooks will be listed here once published.</p></noscript>
+
+  <h3 style="margin-top:1.2rem">No-code authoritative tools (live now)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Tool</th><th>Unit</th><th>What a leader does with it</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://teachablemachine.withgoogle.com/">Google Teachable Machine</a></td><td>2</td><td>Train an image/sound model from your own examples in the browser; see how data (and bias) shapes it — no code.</td></tr>
+      <tr><td><a href="https://gandalf.lakera.ai/">Lakera "Gandalf"</a></td><td>2</td><td>Try to trick an AI into leaking a secret — a five-minute felt sense of prompt injection.</td></tr>
+      <tr><td><a href="https://atlas.mitre.org/">MITRE ATLAS</a></td><td>2</td><td>Browse the catalog of real-world attacks on AI systems.</td></tr>
+      <tr><td><a href="https://quantum.ibm.com/composer">IBM Quantum Composer</a></td><td>3</td><td>Build a quantum circuit by dragging gates and run it — see superposition and entanglement without math.</td></tr>
+      <tr><td><a href="https://www.ntia.gov/page/united-states-frequency-allocation-chart">U.S. Spectrum Allocation Chart (NTIA)</a></td><td>4</td><td>See how completely the electromagnetic spectrum is already allocated — why it is contested.</td></tr>
+      <tr><td><a href="https://platform.leolabs.space/visualization">LeoLabs orbit visualizer</a></td><td>4</td><td>Look at how crowded low-Earth orbit actually is.</td></tr>
+      <tr><td><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA Known Exploited Vulnerabilities</a></td><td>5</td><td>See which vulnerabilities are being exploited in the wild right now.</td></tr>
+      <tr><td><a href="https://attack.mitre.org/matrices/ics/">MITRE ATT&amp;CK for ICS</a></td><td>5</td><td>Browse adversary techniques against operational technology / industrial control systems.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="mini">Links are click-tested at build time but the open web changes; the instructor re-verifies before each offering. Any tool can be swapped for an equivalent.</p>
+</section>
+
+<!-- ASSESSMENT -->
+<section id="assessment">
+  <h2>Assessment</h2>
+  <div class="grid two">
+    <div class="table-wrap"><table>
+      <thead><tr><th>Component</th><th>Weight</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Capstone decision package</td><td>70%</td><td>The six sections (A–F), built one per unit, ending in the joint-process risk-acceptance recommendation and a ten-minute brief.</td></tr>
+        <tr><td>Participation &amp; case discussion</td><td>30%</td><td>Prepared, specific, and building on the sandboxes and cases; red-teaming classmates' decisions in Unit 6.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <h3>Capstone rubric</h3>
+      <ul class="tight">
+        <li><b>Uncertainty stated, not hidden (25%)</b> — ranges with evidence quality; deep uncertainty named.</li>
+        <li><b>Technical claims are right (25%)</b> — correct threat vocabulary and limits from Units 2–5.</li>
+        <li><b>Robust &amp; adaptive (20%)</b> — failure futures, signposts, a real review date.</li>
+        <li><b>Joint-process discipline (15%)</b> — risk-to-mission vs. risk-to-force; named authority; tolerance cited.</li>
+        <li><b>Communicates to a senior audience (15%)</b> — bottom line first; ten minutes; signable.</li>
+      </ul>
+      <p class="mini">Grading scale follows the host program's policy. Full worksheet: <code>capstone.md</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <h2>Policies</h2>
+  <div class="grid two">
+    <div class="card"><h3>Classification &amp; handling</h3><p>Entirely unclassified, open sources only. Sandboxes run in commercial cloud; no CUI, PII, or work data. Capstone work uses real decisions <em>abstracted</em> to an unclassified, non-attributable form — the participant's responsibility.</p></div>
+    <div class="card"><h3>Use of AI tools</h3><p>Encouraged for readings, drafting, and analysis, with disclosure of what was used. The capstone must be the participant's own judgment; unverified AI-generated text is an error — Unit 2 explains why.</p></div>
+    <div class="card"><h3>Prerequisites</h3><p>None beyond a web browser and a free Google account for Colab. No coding at any point; sandboxes run with "Run all" and interact through sliders and forms.</p></div>
+    <div class="card"><h3>Accessibility &amp; alternatives</h3><p>Notebooks work with keyboard and screen readers in Colab; participants without a Google account can run them locally or work in pairs from the projected session. No-code tools have equivalents.</p></div>
+    <div class="card"><h3>Currency of sources</h3><p>The policy baseline moves fast. Every reference is dated and labelled final, in force, draft, or under revision as of 29 Sep 2026; the instructor re-verifies before each offering.</p></div>
+    <div class="card"><h3>Disclaimer</h3><p class="disclaimer">The views expressed are those of the author and do not necessarily reflect the official policy or position of the Department of the Army, the Department of Defense, or the U.S. Government. Working draft, pre-decisional, not for distribution.</p></div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <h2>References</h2>
+  <p class="mini">Checked for current status on 29 September 2026. <span class="status s-final">FINAL</span> published standard · <span class="status s-inforce">IN FORCE</span> binding direction · <span class="status s-draft">DRAFT</span> · <span class="status s-revision">UNDER REVISION</span> · <span class="status s-verify">VERIFY</span> not re-confirmed this pass.</p>
+
+  <h3>Government standards &amp; policy</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Reference</th><th>Issuer · date</th><th>Status</th><th>Unit</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final">SP 800-30 Rev. 1, Risk Assessments</a></td><td>NIST · 2012</td><td><span class="status s-final">FINAL</span></td><td>1, 6</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/ir/8286/final">IR 8286, Cybersecurity &amp; ERM</a></td><td>NIST · 2020–22</td><td><span class="status s-final">FINAL</span></td><td>1, 6</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final">SP 800-37 Rev. 2, RMF</a> · <a href="https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/851001p.pdf">DoDI 8510.01</a></td><td>NIST · 2018 / DoD · 2022</td><td><span class="status s-inforce">IN FORCE</span></td><td>1, 6</td></tr>
+      <tr><td>CJCSM 3105.01, Joint Risk Analysis Methodology</td><td>Joint Staff</td><td><span class="status s-verify">VERIFY EDITION</span></td><td>6</td></tr>
+      <tr><td><a href="https://www.dau.edu">DoD Risk, Issue &amp; Opportunity (RIO) Guide</a></td><td>DoD/DAU</td><td><span class="status s-verify">VERIFY EDITION</span></td><td>6</td></tr>
+      <tr><td><a href="https://doi.org/10.6028/NIST.AI.100-1">AI 100-1 (AI RMF)</a> · <a href="https://airc.nist.gov/airmf-resources/playbook/">Playbook</a></td><td>NIST · 2023</td><td><span class="status s-final">FINAL</span></td><td>2</td></tr>
+      <tr><td><a href="https://doi.org/10.6028/NIST.AI.100-2e2025">AI 100-2 E2025, Adversarial ML Taxonomy</a></td><td>NIST · 2025</td><td><span class="status s-final">FINAL</span></td><td>2</td></tr>
+      <tr><td><a href="https://doi.org/10.6028/NIST.AI.600-1">AI 600-1, Generative AI Profile</a></td><td>NIST · 2024</td><td><span class="status s-final">FINAL</span></td><td>2</td></tr>
+      <tr><td><a href="https://genai.owasp.org/llm-top-10/">OWASP Top 10 for LLM Applications (2025)</a>; OWASP Agentic Security Initiative</td><td>OWASP · 2025</td><td><span class="status s-final">CURRENT</span></td><td>2</td></tr>
+      <tr><td><a href="https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative">NIST AI Agent Standards Initiative</a> (agent identity &amp; authorization)</td><td>NIST CAISI · 2026</td><td><span class="status s-draft">IN DEVELOPMENT</span></td><td>2</td></tr>
+      <tr><td><a href="https://www.cisa.gov/resources-tools/resources/ai-data-security">AI Data Security: Best Practices</a></td><td>CISA/NSA/FBI · 2025</td><td><span class="status s-inforce">GUIDANCE</span></td><td>2</td></tr>
+      <tr><td><a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/">EO 14409</a> · <a href="https://www.whitehouse.gov/presidential-actions/2026/06/national-security-presidential-memorandum-nspm-11/">NSPM-11</a></td><td>White House · Jun 2026</td><td><span class="status s-inforce">IN FORCE</span></td><td>2</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203</a> · <a href="https://csrc.nist.gov/pubs/fips/204/final">204</a> · <a href="https://csrc.nist.gov/pubs/fips/205/final">205</a> (ML-KEM, ML-DSA, SLH-DSA)</td><td>NIST · Aug 2024</td><td><span class="status s-final">FINAL</span></td><td>3</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/ir/8547/ipd">IR 8547 (ipd), PQC transition</a></td><td>NIST · 2024</td><td><span class="status s-draft">DRAFT</span></td><td>3</td></tr>
+      <tr><td><a href="https://www.federalregister.gov/d/2026-12909">EO 14412</a> · <a href="https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf">OMB M-26-15</a></td><td>White House / OMB · Jun 2026</td><td><span class="status s-inforce">IN FORCE</span></td><td>3</td></tr>
+      <tr><td><a href="https://dodcio.defense.gov/Portals/0/Documents/Library/DoW-PQC-Strategy.pdf">DoW PQC Strategy</a> · <a href="https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF">NSA CNSA 2.0</a></td><td>DoW · 2026 / NSA · 2022</td><td><span class="status s-inforce">IN FORCE</span></td><td>3</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/ir/8323/r1/final">NIST IR 8323 r1, Foundational PNT Profile</a></td><td>NIST · 2023</td><td><span class="status s-final">FINAL</span></td><td>3, 4</td></tr>
+      <tr><td><a href="https://www.esd.whs.mil/portals/54/documents/dd/issuances/dodd/300009p.pdf">DoDD 3000.09, Autonomy in Weapon Systems</a></td><td>DoD · 2023</td><td><span class="status s-revision">UNDER REVISION</span></td><td>4</td></tr>
+      <tr><td><a href="https://www.federalregister.gov/documents/2020/09/10/2020-20150/cybersecurity-principles-for-space-systems">Space Policy Directive-5</a> · <a href="https://csrc.nist.gov/pubs/ir/8270/final">NIST IR 8270</a> · <a href="https://csrc.nist.gov/pubs/ir/8401/final">NIST IR 8401</a></td><td>WH · 2020 / NIST · 2023–24</td><td><span class="status s-final">FINAL</span></td><td>4</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final">SP 800-161 Rev. 1 (C-SCRM)</a></td><td>NIST · 2022–24</td><td><span class="status s-final">FINAL</span></td><td>5</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/sp/800/145/final">SP 800-145 (cloud definition)</a> · <a href="https://csrc.nist.gov/pubs/sp/800/144/final">SP 800-144 (public cloud)</a> · <a href="https://csrc.nist.gov/pubs/sp/800/210/final">SP 800-210 (cloud access control)</a></td><td>NIST · 2011–2020</td><td><span class="status s-final">FINAL</span></td><td>5</td></tr>
+      <tr><td><a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final">SP 800-82 Rev. 3 (OT security)</a></td><td>NIST · 2023</td><td><span class="status s-final">FINAL</span></td><td>5</td></tr>
+      <tr><td><a href="https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf">OMB M-26-05</a> · <a href="https://public.cyber.mil/dccs/">DoD Cloud SRG</a></td><td>OMB · 2026 / DISA · living</td><td><span class="status s-inforce">IN FORCE</span></td><td>5</td></tr>
+      <tr><td><a href="https://www.cto.mil">USD(R&amp;E) Critical Technology Areas</a>; 2026 National Defense Strategy</td><td>DoW · 2025–26</td><td><span class="status s-inforce">IN FORCE</span></td><td>6</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Foundational &amp; case readings</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Work</th><th>Why it is here</th><th>Unit</th></tr></thead>
+    <tbody>
+      <tr><td>Knight, <i>Risk, Uncertainty and Profit</i> (1921); Lempert et al., <i>Shaping the Next One Hundred Years</i> (2003) <a href="https://www.rand.org/pubs/monograph_reports/MR1626.html">PDF</a>; Marchau et al., <i>Decision Making under Deep Uncertainty</i> (2019) <a href="https://link.springer.com/book/10.1007/978-3-030-05252-2">OA</a>; Klein, "Premortem" (2007) <a href="https://hbr.org/2007/09/performing-a-project-premortem">HBR</a></td><td>Risk vs. uncertainty; robust &amp; adaptive decision-making</td><td>1, 6</td></tr>
+      <tr><td>Schilling, <i>Strategic Management of Technological Innovation</i> (7th ed.)</td><td>S-curves, competence-destroying change, architectural innovation, make/buy/ally, and the teaching-case format</td><td>1, 3, 5</td></tr>
+      <tr><td>Anthropic, <i>Disrupting the first reported AI-orchestrated cyber espionage campaign</i> (2025) <a href="https://www.anthropic.com/news/disrupting-AI-espionage">link</a>; MITRE Campaign C0062 <a href="https://attack.mitre.org/campaigns/C0062/">link</a></td><td>The agentic-AI intrusion case (taught defensively)</td><td>2</td></tr>
+      <tr><td>Parasuraman &amp; Riley, "Humans and Automation" (1997); Lee &amp; See, "Trust in Automation" (2004); DeepMind, "Specification gaming" (2020) <a href="https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/">link</a></td><td>Automation bias, trust calibration, objectives gone literal</td><td>2, 4</td></tr>
+      <tr><td>Goodfellow et al. (2014) / Gu et al., "BadNets" (2017) — origin citations only; current threat framing is NIST AI 100-2 E2025</td><td>Where adversarial ML and data poisoning were first shown</td><td>2</td></tr>
+      <tr><td>Mosca, "Will We Be Ready?" (2018) <a href="https://doi.org/10.1109/MSP.2018.3761723">doi</a>; Shor (1994); Grover (1996)</td><td>The quantum threat and the migration inequality</td><td>3</td></tr>
+      <tr><td>Scharre, <i>Army of None</i> (2018); <i>Four Battlegrounds</i> (2023)</td><td>Human control of autonomy; the strategic frame for convergence</td><td>4, 6</td></tr>
+      <tr><td>Miller, <i>Chip War</i> (2022); OT incident cases — Stuxnet, Ukraine grid (2015/16), Colonial Pipeline (2021), Triton (2017); CrowdStrike outage (2024)</td><td>Chip geopolitics; OT/ICS attacks; cloud/supply-chain concentration</td><td>5</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+  <h2>Glossary</h2>
+  <dl class="gloss">
+    <dt>Agentic authority</dt><dd>What an AI agent can actually do — its tools × permissions × oversight. The real measure of its risk.</dd>
+    <dt>Architectural innovation</dt><dd>A change that rearranges how components connect rather than the components themselves — what most often breaks large enterprise architectures on integration (Schilling).</dd>
+    <dt>CBRN uplift</dt><dd>The concern that frontier AI could lower barriers to chemical, biological, radiological, or nuclear (or cyber) misuse; governed via capability thresholds, evaluations, and access controls.</dd>
+    <dt>Chiponomics</dt><dd>The economics and geopolitics of semiconductor design and manufacturing — concentration, export controls, and supply fragility.</dd>
+    <dt>Cloud shared responsibility</dt><dd>The split of security duties between the cloud provider and the customer; gaps here, not the data centers, cause most cloud incidents.</dd>
+    <dt>Competence-destroying change</dt><dd>An innovation that makes existing skills and assets obsolete rather than building on them — e.g., post-quantum replacing RSA/ECC (Schilling).</dd>
+    <dt>Contested / permissive spectrum</dt><dd>Whether you can rely on the electromagnetic spectrum (permissive) or must operate through jamming and denial (non-permissive/contested).</dd>
+    <dt>Data-center concentration</dt><dd>Risk from the physical clustering of compute, power, and cooling — distinct from the cloud software model that runs on it.</dd>
+    <dt>Deep uncertainty</dt><dd>When parties cannot agree on the probabilities, the models, or how to value outcomes — the state most emerging-tech decisions are in.</dd>
+    <dt>Harvest now, decrypt later</dt><dd>Recording encrypted data today to decrypt once a quantum computer exists; why exposure of long-lived data has already begun.</dd>
+    <dt>Inter-satellite / on-orbit link</dt><dd>Direct communication between satellites in orbit rather than through the ground — resilient, but its own attack surface.</dd>
+    <dt>LEO</dt><dd>Low-Earth orbit — where most new, proliferated satellite constellations operate; increasingly congested and contested.</dd>
+    <dt>Operating-design-domain (ODD)</dt><dd>The conditions an autonomous system was built and validated for; most systems cannot tell when they have left it.</dd>
+    <dt>OT / ICS / PLC</dt><dd>Operational technology, industrial control systems, and the programmable logic controllers that move physical things — where a cyberattack has physical consequences.</dd>
+    <dt>PNT</dt><dd>Position, navigation, and timing (e.g., GPS) — a hidden dependency of nearly everything, and a prime target for jamming and spoofing.</dd>
+    <dt>Prompt injection</dt><dd>Instructions hidden in content an AI reads (a document, a web page) that hijack its behavior — direct or indirect.</dd>
+    <dt>Risk to mission / risk to force</dt><dd>The two risks the joint force weighs separately: to accomplishing the mission, and to the people and equipment (CJCSM 3105.01).</dd>
+    <dt>Robust decision</dt><dd>The option that performs acceptably across the widest range of futures, rather than the one that is best if a single forecast holds.</dd>
+    <dt>S-curve</dt><dd>The pattern of slow-then-fast-then-plateau technology improvement; a way to judge maturity and how much uncertainty remains (Schilling).</dd>
+    <dt>Signpost</dt><dd>A pre-chosen, monitorable signal that a decision's assumptions are failing and it must be revisited.</dd>
+  </dl>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Emerging Technological Risk: Deciding Under Deep Uncertainty</b> · working draft 0.2 · 29 September 2026 · course director: Ronald Iammartino, PhD, CISSP.</p>
+    <p class="disclaimer">The views expressed are those of the author and do not necessarily reflect the official policy or position of the Department of the Army, the Department of Defense, or the U.S. Government.</p>
+    <p class="mini">Hands-on sandboxes and capstone worksheet ship with the course repository. <span id="repoLink"></span></p>
+  </div>
+</footer>
+<div class="banner" role="note">DRAFT//PRE-DECISIONAL</div>
+
+<script>
+(function(){
+  "use strict";
+  var CONFIG = { owner:"", repo:"", branch:"main" };
+
+  // Per-unit sandboxes. ready:false renders a "pending" chip instead of a live Colab button
+  // (the notebooks are built in the next pass). Flip ready:true and add the file to labs/ to activate.
+  var SANDBOX = [
+    {u:1, file:"unit1_deciding_under_uncertainty.ipynb", title:"Robust-decision demo", mins:15, stack:"Colab · sliders", ready:false,
+     what:"Flip a risk-matrix ranking with one uncertain input; run a small robust-decision screen and read the regret."},
+    {u:2, file:"unit2_agentic_ai_and_injection.ipynb", title:"Agentic-agent sandbox", mins:15, stack:"Colab · open-weight model", ready:false,
+     what:"Give an agent tools that change sandboxed files, watch a document hijack it, then stop it with least privilege and a human gate."},
+    {u:3, file:"unit3_pqc_and_mosca.ipynb", title:"PQC + Mosca sandbox", mins:15, stack:"Colab · cryptography≥48", ready:false,
+     what:"Generate post-quantum keys and a signature, compare sizes to today's, and run the Mosca X+Y vs. Z calculator."},
+    {u:4, file:"unit4_autonomy_and_contested.ipynb", title:"Autonomy control sandbox", mins:15, stack:"Colab · Gymnasium", ready:false,
+     what:"Run a controller, change the physics it never trained on, and add latency until control collapses vs. human reaction time."},
+    {u:5, file:"unit5_supply_chain_and_sbom.ipynb", title:"Supply-chain / SBOM sandbox", mins:15, stack:"Colab · pip-audit", ready:false,
+     what:"Generate a software bill of materials for a live system, audit it for known vulnerabilities, and map data to a cloud impact level."},
+    {u:6, file:"unit6_joint_risk_decision.ipynb", title:"Joint-risk decision sandbox", mins:15, stack:"Colab · exports a memo", ready:false,
+     what:"Weight the convergence edges, then generate a risk-acceptance memo (risk-to-mission and risk-to-force) you can brief."}
+  ];
+
+  function detectRepo(){
+    if (CONFIG.owner && CONFIG.repo) return CONFIG;
+    var m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+    if (!m) return null;
+    var owner = m[1];
+    var segs = location.pathname.split("/").filter(Boolean);
+    if (segs.length && /\.html?$/i.test(segs[segs.length-1])) segs.pop();
+    var repo = segs.length ? segs[0] : owner + ".github.io";
+    return { owner:owner, repo:repo, branch:CONFIG.branch||"main" };
+  }
+  var repo = detectRepo();
+  var badge = '<svg viewBox="0 0 24 16" aria-hidden="true"><circle cx="6.5" cy="8" r="4.2" fill="none" stroke="#f9ab00" stroke-width="2.4"/><circle cx="17.5" cy="8" r="4.2" fill="none" stroke="#e8710a" stroke-width="2.4"/></svg>';
+  var grid = document.getElementById("sandboxGrid");
+  SANDBOX.forEach(function(s){
+    var card = document.createElement("article"); card.className="card";
+    var colabHref = repo ? ("https://colab.research.google.com/github/"+repo.owner+"/"+repo.repo+"/blob/"+repo.branch+"/labs/"+s.file) : null;
+    var action = (s.ready && colabHref)
+      ? '<a class="colab" href="'+colabHref+'" target="_blank" rel="noopener">'+badge+'Open in Colab</a>'
+      : '<span class="colab disabled">'+badge+'Publishing in the hands-on build</span>';
+    card.innerHTML =
+      '<div style="display:flex;justify-content:space-between;gap:.5rem;align-items:baseline">'+
+        '<h3 style="margin:0">Unit '+s.u+' · '+s.title+'</h3><small class="mini">'+s.mins+' min</small></div>'+
+      '<p class="mini" style="margin:.4rem 0">'+s.what+'</p>'+
+      '<div class="tags" style="margin:.2rem 0"><span class="pill">'+s.stack+'</span></div>'+
+      '<div style="margin-top:.4rem">'+action+'</div>';
+    grid.appendChild(card);
+  });
+  var rl = document.getElementById("repoLink");
+  if (repo && rl) rl.innerHTML = '<a href="https://github.com/'+repo.owner+'/'+repo.repo+'">github.com/'+repo.owner+'/'+repo.repo+'</a>';
+
+  // tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function activate(tab){ tabs.forEach(function(t){ var on=t===tab; t.setAttribute("aria-selected",on?"true":"false"); document.getElementById(t.getAttribute("aria-controls")).hidden=!on; }); }
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){ activate(tab); });
+    tab.addEventListener("keydown", function(e){ var i=tabs.indexOf(tab);
+      if(e.key==="ArrowRight"){ activate(tabs[(i+1)%tabs.length]); tabs[(i+1)%tabs.length].focus(); }
+      if(e.key==="ArrowLeft"){ activate(tabs[(i-1+tabs.length)%tabs.length]); tabs[(i-1+tabs.length)%tabs.length].focus(); } });
+  });
+
+  // accordion
+  var mods = Array.prototype.slice.call(document.querySelectorAll("details.mod"));
+  var btn = document.getElementById("expandAll");
+  btn.addEventListener("click", function(){ var open=!mods.every(function(d){return d.open;}); mods.forEach(function(d){d.open=open;}); btn.textContent=open?"Collapse all units":"Expand all units"; });
+  function openHash(){ var el=location.hash&&document.querySelector(location.hash); if(el&&el.matches("details.mod")) el.open=true; }
+  window.addEventListener("hashchange", openHash); openHash();
+  window.addEventListener("beforeprint", function(){ mods.forEach(function(d){d.open=true;}); });
+
+  // print + theme
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+  var themeBtn = document.getElementById("themeBtn");
+  function applyTheme(t){ if(t) document.documentElement.setAttribute("data-theme",t); else document.documentElement.removeAttribute("data-theme");
+    var dark = t==="dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    themeBtn.textContent = dark?"Light mode":"Dark mode"; themeBtn.setAttribute("aria-pressed", dark?"true":"false"); }
+  var saved=null; try{ saved=localStorage.getItem("etr-theme"); }catch(e){}
+  applyTheme(saved);
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme")==="dark" || (!document.documentElement.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark?"light":"dark"; applyTheme(next); try{ localStorage.setItem("etr-theme",next); }catch(e){} });
+
+  // nav highlight
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.sub a"));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  function hl(){ var y=window.scrollY+140, idx=0; sections.forEach(function(s,i){ if(s&&s.offsetTop<=y) idx=i; }); links.forEach(function(a,i){ a.classList.toggle("active", i===idx); }); }
+  window.addEventListener("scroll", hl, {passive:true}); hl();
+})();
+</script>
+</body>
+</html>
